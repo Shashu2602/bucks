@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Finger+Paint&family=Archivo+Black&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css?v=6">
 </head>
 <body>
 
@@ -43,8 +43,10 @@
   <section class="hero" id="hero">
     <div class="hero-bg" id="heroBg" aria-hidden="true"></div>
     <div class="hero-glow" id="heroGlow" aria-hidden="true"></div>
-    <img class="hero-bucky" src="assets/bucky-hero.png" alt="Bucky, the BUCKS mascot — claymation man in a caramel beanie and sunglasses, arms crossed">
-    <img class="hero-penny" src="assets/penny-hero.png" alt="Penny, the BUCKS mascot — claymation woman with a hair bun, round glasses and caramel scarf, hand on hip">
+    <!-- position inlined as a safety net: if a stale cached stylesheet ever
+         loads with this HTML, the mascots must stay out of the layout flow -->
+    <img class="hero-bucky" src="assets/bucky-hero.png" style="position:absolute;bottom:0;right:5vw;height:min(68vh,560px);width:auto;z-index:1;pointer-events:none" alt="Bucky, the BUCKS mascot — claymation man in a caramel beanie and sunglasses, arms crossed">
+    <img class="hero-penny" src="assets/penny-hero.png" style="position:absolute;bottom:0;left:3vw;height:min(52vh,430px);width:auto;z-index:1;pointer-events:none" alt="Penny, the BUCKS mascot — claymation woman with a hair bun, round glasses and caramel scarf, hand on hip">
     <div class="hero-content reveal">
       <p class="eyebrow">A KDP Imprint For Real Financial Situations</p>
       <h1 class="hero-headline">STOP BUDGETING LIKE <span class="accent-text">YOU'RE SORRY</span> FOR EXISTING.</h1>
@@ -217,6 +219,6 @@
   </div>
 </div>
 
-<script src="js/main.js"></script>
+<script src="js/main.js?v=6"></script>
 </body>
 </html>
