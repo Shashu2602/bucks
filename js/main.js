@@ -461,51 +461,72 @@ function escapeHtml(s) {
 })();
 
 /* --------------------------------------------------------------------------
-   Render: coming-soon grid, sorted by planned date (#21 badges)
+   Render: roadmap milestone timeline — releases grouped by drop date,
+   diamond markers on an amber rail, compact clickable rows (#21 rel badges)
    -------------------------------------------------------------------------- */
-(function renderComingSoon() {
-  const grid = document.getElementById("catalogGrid");
+(function renderTimeline() {
+  const wrap = document.getElementById("timeline");
   const comingSoon = BOOKS
     .filter((b) => b.status === "coming-soon")
     .sort((a, b) => a.date.localeCompare(b.date) || a.id - b.id);
 
+  /* group by drop date, preserving date order */
+  const groups = new Map();
   comingSoon.forEach((book) => {
-    const pillar = PILLAR_BY_ID[book.pillar];
-    const rel = relativeDays(book.date);
-    const card = el("article", "book-card reveal");
-    card.style.setProperty("--pillar-accent", pillar.accent);
-    card.style.setProperty("--pillar-glow", ACCENT_HEX[pillar.accent]);
-    card.setAttribute("data-pillar", book.pillar);
-    card.setAttribute("tabindex", "0");
-    card.setAttribute("role", "button");
-    card.setAttribute("aria-label", `${book.title} — details`);
-    card.innerHTML = `
-      <div class="book-card-top">
-        <span class="pillar-tag">${escapeHtml(pillar.label)}</span>
-        <span class="badge badge-soon">Coming Soon</span>
+    if (!groups.has(book.date)) groups.set(book.date, []);
+    groups.get(book.date).push(book);
+  });
+
+  groups.forEach((books, date) => {
+    const rel = relativeDays(date);
+    const group = el("div", "timeline-group reveal");
+    group.setAttribute("data-date", date);
+    group.innerHTML = `
+      <div class="timeline-marker" aria-hidden="true"></div>
+      <div class="timeline-date">
+        <span class="timeline-date-text">${formatPlannedDate(date)}</span>
+        ${rel ? `<span class="timeline-rel">${rel}</span>` : ""}
       </div>
-      <h3 class="book-title">${escapeHtml(book.title)}</h3>
-      ${book.subtitle ? `<p class="book-subtitle">${escapeHtml(book.subtitle)}</p>` : ""}
-      <p class="book-card-meta">For: <strong>${escapeHtml(book.reader)}</strong></p>
-      <p class="book-card-angle">${escapeHtml(book.angle)}</p>
-      <div class="book-card-footer">
-        <span class="planned-date">Planned: ${formatPlannedDate(book.date)}${rel ? ` <span class="relative-days">(${rel})</span>` : ""}</span>
-        <a href="#newsletter" class="notify-link">Notify Me</a>
-      </div>
+      <div class="timeline-books"></div>
     `;
+    const booksWrap = group.querySelector(".timeline-books");
 
-    card.addEventListener("click", (e) => {
-      if (e.target.closest(".notify-link")) return; // let the anchor scroll
-      openModal(book.id);
-    });
-    card.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
+    books.forEach((book) => {
+      const pillar = PILLAR_BY_ID[book.pillar];
+      const entry = el("article", "timeline-entry");
+      entry.style.setProperty("--pillar-accent", pillar.accent);
+      entry.style.setProperty("--pillar-glow", ACCENT_HEX[pillar.accent]);
+      entry.setAttribute("data-pillar", book.pillar);
+      entry.setAttribute("tabindex", "0");
+      entry.setAttribute("role", "button");
+      entry.setAttribute("aria-label", `${book.title} — details`);
+      entry.innerHTML = `
+        <div class="timeline-entry-main">
+          <h3 class="book-title">${escapeHtml(book.title)}</h3>
+          ${book.subtitle ? `<p class="book-subtitle">${escapeHtml(book.subtitle)}</p>` : ""}
+          <p class="timeline-entry-reader">For: <strong>${escapeHtml(book.reader)}</strong> — ${escapeHtml(book.angle)}</p>
+        </div>
+        <div class="timeline-entry-side">
+          <span class="pillar-tag">${escapeHtml(pillar.label)}</span>
+          <a href="#newsletter" class="notify-link">Notify Me</a>
+        </div>
+      `;
+
+      entry.addEventListener("click", (e) => {
+        if (e.target.closest(".notify-link")) return; // let the anchor scroll
         openModal(book.id);
-      }
+      });
+      entry.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openModal(book.id);
+        }
+      });
+
+      booksWrap.appendChild(entry);
     });
 
-    grid.appendChild(card);
+    wrap.appendChild(group);
   });
 })();
 
@@ -516,7 +537,7 @@ let setFilter; // exposed for pillar cards / footer links
 
 (function initFilters() {
   const tabsWrap = document.getElementById("filterTabs");
-  const grid = document.getElementById("catalogGrid");
+  const timeline = document.getElementById("timeline");
 
   PILLARS.forEach((pillar) => {
     const tab = el("button", "filter-tab", escapeHtml(pillar.label));
@@ -535,20 +556,29 @@ let setFilter; // exposed for pillar cards / footer links
   }
 
   function applyFilter(filterId) {
-    const cards = grid.querySelectorAll(".book-card");
-    cards.forEach((card) => {
-      const match = filterId === "all" || card.getAttribute("data-pillar") === filterId;
+    const entries = timeline.querySelectorAll(".timeline-entry");
+    entries.forEach((entry) => {
+      const match = filterId === "all" || entry.getAttribute("data-pillar") === filterId;
       if (match) {
-        card.classList.remove("is-hidden");
+        entry.classList.remove("is-hidden");
         /* next frame so the transition from filtered-out state runs */
-        requestAnimationFrame(() => card.classList.remove("is-filtered-out"));
+        requestAnimationFrame(() => entry.classList.remove("is-filtered-out"));
       } else {
-        card.classList.add("is-filtered-out");
-        /* hide after the fade/scale transition ends to free grid space */
+        entry.classList.add("is-filtered-out");
+        /* hide after the fade/scale transition ends to free space */
         setTimeout(() => {
-          if (card.classList.contains("is-filtered-out")) card.classList.add("is-hidden");
+          if (entry.classList.contains("is-filtered-out")) entry.classList.add("is-hidden");
         }, prefersReducedMotion ? 0 : 350);
       }
+    });
+
+    /* collapse any date group whose entries are all filtered out */
+    timeline.querySelectorAll(".timeline-group").forEach((group) => {
+      const hasVisible = Array.from(group.querySelectorAll(".timeline-entry"))
+        .some((entry) => filterId === "all" || entry.getAttribute("data-pillar") === filterId);
+      setTimeout(() => {
+        group.classList.toggle("is-hidden", !hasVisible);
+      }, prefersReducedMotion || hasVisible ? 0 : 350);
     });
   }
 
