@@ -1,5 +1,5 @@
 /* ==========================================================================
-   BRAZEN — site JS
+   BUCKS — site JS
    Catalog data (synced from kdp-personal-finance-roadmap (1).md), rendering,
    and every interaction from the build spec. Vanilla JS, no dependencies.
    ========================================================================== */
@@ -255,7 +255,7 @@ function escapeHtml(s) {
 (function initBanner() {
   const banner = document.getElementById("announcementBanner");
   const dismiss = document.getElementById("dismissBanner");
-  const KEY = "brazen-banner-dismissed";
+  const KEY = "bucks-banner-dismissed";
 
   if (localStorage.getItem(KEY) === "1") {
     banner.classList.add("is-dismissed");
@@ -363,7 +363,7 @@ function escapeHtml(s) {
    Page-load logo intro (#18) — once per session
    -------------------------------------------------------------------------- */
 (function initIntro() {
-  const KEY = "brazen-intro-played";
+  const KEY = "bucks-intro-played";
   if (!sessionStorage.getItem(KEY) && !prefersReducedMotion) {
     document.querySelector(".nav-logo").classList.add("intro-play");
     sessionStorage.setItem(KEY, "1");
@@ -435,13 +435,9 @@ function escapeHtml(s) {
   const card = el("article", "available-card reveal");
   card.style.setProperty("--pillar-accent", pillar.accent);
   card.innerHTML = `
-    <div class="book1-cover" role="img" aria-label="Cover of ${escapeHtml(book.title)}: white background, dark green title, copper accent rules">
-      <div class="cover-rule"></div>
-      <p class="cover-title">${escapeHtml(book.title)}</p>
-      <p class="cover-subtitle">${escapeHtml(book.subtitle)}</p>
-      <div class="cover-rule"></div>
-      <p class="cover-imprint">BRAZEN</p>
-    </div>
+    <img class="book1-cover-img" src="assets/cover-book1.jpg"
+      alt="Cover of ${escapeHtml(book.title)}: a pink piggy bank sitting in a pile of dollar bills, caramel title type on crumpled white paper, BUCKS imprint band at the bottom">
+
     <div class="available-info">
       <span class="badge">Available Now</span>
       <h3 class="book-title">${escapeHtml(book.title)}</h3>

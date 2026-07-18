@@ -1,4 +1,4 @@
-# BRAZEN Website — Full Build Prompt
+# BUCKS Website — Full Build Prompt
 
 Copy everything below this line into your LLM of choice (Claude, GPT, whatever) as a single message. It is written to be self-contained — the LLM does not need to see the rest of this repo to build the site, though pointers to the source files are included in case it does have file access.
 
@@ -6,7 +6,7 @@ Copy everything below this line into your LLM of choice (Claude, GPT, whatever) 
 
 ## ROLE
 
-You are a senior front-end developer and brand designer. Build a complete, production-ready marketing website for **BRAZEN**, a KDP (Kindle Direct Publishing) ebook imprint in the personal finance / side-income niche. Output **vanilla HTML, CSS, and JavaScript only** — no frameworks (no React/Vue/Next), no build step, no npm install. The site must run by double-clicking `index.html` or dropping the folder on any static host (GitHub Pages, Netlify, Cloudflare Pages, a KDP author-site host, etc.).
+You are a senior front-end developer and brand designer. Build a complete, production-ready marketing website for **BUCKS**, a KDP (Kindle Direct Publishing) ebook imprint in the personal finance / side-income niche. Output **vanilla HTML, CSS, and JavaScript only** — no frameworks (no React/Vue/Next), no build step, no npm install. The site must run by double-clicking `index.html` or dropping the folder on any static host (GitHub Pages, Netlify, Cloudflare Pages, a KDP author-site host, etc.).
 
 Deliver:
 - `index.html`
@@ -20,7 +20,7 @@ Single scrolling landing page with anchor-nav sections, plus a JS-driven modal/d
 
 ## BRAND BRIEF
 
-**Name:** BRAZEN — a KDP ebook imprint for personal finance / side-income guides.
+**Name:** BUCKS — a KDP ebook imprint for personal finance / side-income guides.
 
 **Positioning:** Money advice for readers whose situation doesn't fit generic budgeting content — irregular income, a specific life transition, a specific household structure, a specific circumstance or life stage. Every title solves one clearly named problem for one clearly named reader.
 
@@ -107,7 +107,7 @@ CSS variables:
 2. **Nav bar** (sticky, shrinks on scroll)
 3. **Hero** (full viewport, ALL CAPS headline + bold sub-line + stat proof + CTA)
 4. **Marquee ticker banner** (scrolling brand-voice one-liners)
-5. **About / Brand story** (the BRAZEN identity, in voice)
+5. **About / Brand story** (the BUCKS identity, in voice)
 6. **Content pillars** (5 pillar cards, used later as catalog filter)
 7. **Catalog — Available Now** (Book #1, full detail)
 8. **Catalog — Coming Soon** (Books #2–20, grid, filterable by pillar, sorted by planned date)
@@ -125,9 +125,9 @@ CSS variables:
 - **The phrase "Learn how to manage and make money" appears prominently in bold** — use it as the hero sub-line or a section eyebrow. Render literally in bold weight, sentence case is fine here since it's the sub-line under an all-caps headline (contrast is the point): `**Learn how to manage and make money — no shame, no fluff, no apology.**`
 - **Social proof stat: "500+ customers satisfied"** — render as an animated count-up stat (`0 → 500+`) triggered on scroll into view. Pair with 1–2 supporting stats pulled from real repo facts, not invented ones:
   - `500+` — Customers Satisfied
-  - `20` — Titles in the BRAZEN Catalog *(from the roadmap: 20-title plan, Jul 18–Aug 16 2026)*
+  - `20` — Titles in the BUCKS Catalog *(from the roadmap: 20-title plan, Jul 18–Aug 16 2026)*
   - `1` — Live Right Now *(Book #1 is the only title with a shipped manuscript/PDF as of this writing — keep this stat honest and update it as more books ship)*
-- Keep every other line of copy in BRAZEN voice: imperative, second person, no hedging, no apology, no "may want to consider."
+- Keep every other line of copy in BUCKS voice: imperative, second person, no hedging, no apology, no "may want to consider."
 
 ---
 

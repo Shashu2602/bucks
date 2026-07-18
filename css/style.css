@@ -1,5 +1,5 @@
 /* ==========================================================================
-   BRAZEN — brand site stylesheet (LIGHT THEME per user direction)
+   BUCKS — brand site stylesheet (LIGHT THEME per user direction)
    White background, black + yellow (amber) text system, marker highlights
    and underlines. Pillar accents (amber/red/acid) kept for catalog coding.
    Book #1's five-color interior palette appears ONLY inside its modal strip.
@@ -773,52 +773,16 @@ h1, h2, h3 {
   box-shadow: 0 16px 36px -12px rgba(245, 166, 35, 0.45);
 }
 
-/* CSS-drawn cover placeholder, aspect-ratio reserved to avoid layout shift.
-   Book #1's real locked palette is allowed here (shipped identity) but is
-   scoped to this cover mock + the modal preview strip only. */
-.book1-cover {
-  aspect-ratio: 6 / 9;
+/* Real cover art (assets/cover-book1.jpg), aspect-ratio reserved to avoid
+   layout shift while the image loads */
+.book1-cover-img {
+  aspect-ratio: 1410 / 2250;
   max-width: 260px;
   width: 100%;
   margin: 0 auto;
-  background: #ffffff;
-  border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  padding: 24px 18px;
-  text-align: center;
   box-shadow: var(--shadow-card);
-}
-
-.book1-cover .cover-rule {
-  width: 80%;
-  height: 4px;
-  background: #bc6c25;
-}
-
-.book1-cover .cover-title {
-  font-family: var(--font-heading);
-  font-size: 1.05rem;
-  line-height: 1.3;
-  color: #283618;
-  text-transform: uppercase;
-}
-
-.book1-cover .cover-subtitle {
-  font-size: 0.7rem;
-  color: #606c38;
-}
-
-.book1-cover .cover-imprint {
-  font-family: var(--font-heading);
-  font-size: 0.65rem;
-  letter-spacing: 0.2em;
-  color: #bc6c25;
-  margin-top: 10px;
+  object-fit: cover;
 }
 
 .available-info {
