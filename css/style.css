@@ -510,22 +510,12 @@ h1, h2, h3 {
   height: min(52vh, 430px);
 }
 
+/* Mascots are desktop-only: below 1024px they crowd the copy, so phones get
+   the original clean hero layout */
 @media (max-width: 1023px) {
-  .hero-bucky {
-    right: 2vw;
-    height: min(24vh, 190px);
-  }
-
+  .hero-bucky,
   .hero-penny {
-    left: 2vw;
-    height: min(20vh, 160px);
-  }
-
-  /* keep the CTA row fully clear of the mascot strip on small screens.
-     (.hero prefix outranks the base .hero-content padding shorthand, which
-     appears later in this file) */
-  .hero .hero-content {
-    padding-bottom: 230px;
+    display: none;
   }
 }
 
