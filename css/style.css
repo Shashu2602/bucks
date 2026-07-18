@@ -487,6 +487,26 @@ h1, h2, h3 {
   opacity: 1;
 }
 
+/* Bucky the mascot — anchored to the hero's bottom-right, behind the text
+   layer, hidden on smaller screens where he'd crowd the copy */
+.hero-bucky {
+  position: absolute;
+  right: 5vw;
+  bottom: 0;
+  height: min(68vh, 560px);
+  width: auto;
+  z-index: 1;
+  pointer-events: none;
+  user-select: none;
+  filter: drop-shadow(0 16px 28px rgba(10, 10, 10, 0.18));
+}
+
+@media (max-width: 1023px) {
+  .hero-bucky {
+    display: none;
+  }
+}
+
 .hero-content {
   position: relative;
   z-index: 2;
