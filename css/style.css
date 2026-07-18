@@ -1,0 +1,1527 @@
+/* ==========================================================================
+   BRAZEN — brand site stylesheet (LIGHT THEME per user direction)
+   White background, black + yellow (amber) text system, marker highlights
+   and underlines. Pillar accents (amber/red/acid) kept for catalog coding.
+   Book #1's five-color interior palette appears ONLY inside its modal strip.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Design system tokens
+   -------------------------------------------------------------------------- */
+:root {
+  /* Light theme neutrals */
+  --bg: #ffffff;
+  --surface: #f7f6f1;        /* card/section background, one step down from white */
+  --surface-raised: #efede4; /* hover/raised surface, input backgrounds */
+  --ink: #0a0a0a;            /* primary text */
+  --muted: #5f5d55;          /* secondary/meta text (darkened for white bg AA) */
+  --border: #e3e1d8;         /* hairline borders/dividers */
+
+  /* Pillar accents — closed set of 3 */
+  --accent-amber: #f5a623;
+  --accent-red: #e63946;
+  --accent-acid: #b4ff3a;
+
+  /* Fonts */
+  --font-display: 'Finger Paint', cursive;
+  --font-heading: 'Archivo Black', 'Inter', sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  /* Spacing scale (8-pt rhythm) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+
+  /* Radii */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+
+  /* Shadows — soft, for a white page */
+  --shadow-card: 0 4px 20px rgba(10, 10, 10, 0.08);
+  --shadow-nav: 0 2px 14px rgba(10, 10, 10, 0.1);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 180ms;
+  --dur-med: 350ms;
+  --dur-slow: 600ms;
+
+  /* Layout */
+  --content-max: 1200px;
+  --nav-height: 72px;
+  --nav-height-scrolled: 56px;
+}
+
+/* --------------------------------------------------------------------------
+   2. Reset / base
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-height) + 12px);
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+/* Nice-to-have #22: accent text selection */
+::selection {
+  background: var(--accent-amber);
+  color: var(--ink);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --------------------------------------------------------------------------
+   3. Typography helpers + marker highlight / underline utilities
+   -------------------------------------------------------------------------- */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 400; /* Finger Paint has one weight */
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.kicker {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-amber);
+  margin-bottom: var(--space-3);
+}
+
+.section-title {
+  font-size: clamp(1.6rem, 4.5vw, 2.6rem);
+  margin-bottom: var(--space-6);
+  max-width: 20ch;
+  color: var(--ink);
+}
+
+/* Marker-style highlight: amber behind black text */
+.hl {
+  background: var(--accent-amber);
+  color: var(--ink);
+  padding: 0 0.15em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/* Hand-drawn-feel amber underline */
+.ul {
+  text-decoration: underline;
+  text-decoration-color: var(--accent-amber);
+  text-decoration-thickness: 0.16em;
+  text-underline-offset: 0.18em;
+}
+
+/* --------------------------------------------------------------------------
+   4. Scroll progress bar (#10)
+   -------------------------------------------------------------------------- */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: var(--accent-amber);
+  z-index: 300;
+}
+
+/* --------------------------------------------------------------------------
+   5. Announcement banner (#5)
+   -------------------------------------------------------------------------- */
+.announcement-banner {
+  background: var(--ink);
+  color: var(--accent-amber);
+  max-height: 80px;
+  overflow: hidden;
+  transition: max-height var(--dur-med) var(--ease-out),
+              padding var(--dur-med) var(--ease-out);
+}
+
+.announcement-banner.is-dismissed {
+  max-height: 0;
+}
+
+.announcement-inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-2) var(--space-5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+}
+
+.announcement-text {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+}
+
+.announcement-text a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.announcement-dismiss {
+  font-size: 1.4rem;
+  line-height: 1;
+  padding: 0 var(--space-2);
+  color: var(--accent-amber);
+}
+
+/* --------------------------------------------------------------------------
+   6. Nav (#9 shrink, #16 underline anim, hamburger < 768)
+   -------------------------------------------------------------------------- */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow var(--dur-med) var(--ease-out);
+}
+
+.nav-inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 var(--space-5);
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: height var(--dur-med) var(--ease-out);
+}
+
+.nav.scrolled {
+  box-shadow: var(--shadow-nav);
+}
+
+.nav.scrolled .nav-inner {
+  height: var(--nav-height-scrolled);
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  text-transform: uppercase;
+}
+
+/* Page-load intro (#18) — .intro-play added by JS once per session */
+.nav-logo.intro-play {
+  animation: logo-intro var(--dur-slow) var(--ease-out) both;
+}
+
+@keyframes logo-intro {
+  from {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.nav-link {
+  font-size: 0.9rem;
+  font-weight: 600;
+  position: relative;
+  padding: var(--space-2) 0;
+  color: var(--ink);
+}
+
+/* #16: underline grows from center on hover */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--accent-amber);
+  transform: scaleX(0);
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: var(--space-2);
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--ink);
+  transition: transform var(--dur-fast) var(--ease-out),
+              opacity var(--dur-fast) var(--ease-out);
+}
+
+.nav-hamburger.is-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-hamburger.is-open span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-hamburger.is-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* --------------------------------------------------------------------------
+   7. Buttons (+ ripple #12)
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: var(--space-4) var(--space-6);
+  border-radius: var(--radius-sm);
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--dur-fast) var(--ease-out),
+              background-color var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: var(--accent-amber);
+  color: var(--ink);
+}
+
+.btn-primary:hover {
+  background: var(--ink);
+  color: var(--accent-amber);
+}
+
+.btn-ghost {
+  border: 2px solid var(--ink);
+  color: var(--ink);
+}
+
+.btn-ghost:hover {
+  border-color: var(--accent-amber);
+}
+
+.btn-small {
+  padding: var(--space-2) var(--space-4);
+  font-size: 0.72rem;
+}
+
+/* #12: ripple span injected by JS */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(10, 10, 10, 0.25);
+  transform: scale(0);
+  animation: ripple-anim var(--dur-slow) var(--ease-out) forwards;
+  pointer-events: none;
+}
+
+.btn-ghost .ripple {
+  background: rgba(10, 10, 10, 0.12);
+}
+
+@keyframes ripple-anim {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   8. Hero (#11 parallax, #23 grain, #24 cursor glow)
+   -------------------------------------------------------------------------- */
+.hero {
+  position: relative;
+  min-height: calc(100vh - var(--nav-height));
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: -60px 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 75% 25%, rgba(245, 166, 35, 0.22), transparent 60%),
+    radial-gradient(ellipse 55% 45% at 20% 80%, rgba(245, 166, 35, 0.12), transparent 55%),
+    var(--bg);
+  will-change: transform;
+  z-index: 0;
+}
+
+/* #23: grain overlay via inline SVG feTurbulence, tiled */
+.hero-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* #24: cursor-follow glow, desktop only (JS gates on pointer type) */
+.hero-glow {
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245, 166, 35, 0.18), transparent 65%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--dur-med) var(--ease-out);
+  z-index: 1;
+}
+
+.hero-glow.is-active {
+  opacity: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-5);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-5);
+}
+
+.eyebrow {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.hero-headline {
+  font-size: clamp(2rem, 6.5vw, 4.2rem);
+  max-width: 16ch;
+  color: var(--ink);
+}
+
+.hero-sub {
+  font-size: clamp(1rem, 2.2vw, 1.3rem);
+  color: var(--muted);
+  max-width: 48ch;
+}
+
+.hero-sub strong {
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6) var(--space-8);
+  margin-top: var(--space-4);
+}
+
+/* display: block (not flex column) so number + suffix flow inline
+   and only the label drops to its own line */
+.stat,
+.proof-stat {
+  display: block;
+}
+
+.stat-number,
+.stat-suffix {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  color: var(--accent-amber);
+  display: inline-block;
+  line-height: 1.1;
+  text-shadow: 0 1px 0 rgba(10, 10, 10, 0.18);
+}
+
+.stat-label {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: var(--space-1);
+}
+
+.hero-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+/* --------------------------------------------------------------------------
+   9. Marquee (#6) — JS extends the track so it never runs out at any width
+   -------------------------------------------------------------------------- */
+.marquee {
+  background: var(--ink);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+  padding: var(--space-4) 0;
+}
+
+.marquee-track {
+  display: flex;
+  gap: var(--space-8);
+  width: max-content;
+  animation: marquee-scroll 40s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-track span {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: #ffffff;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.marquee-track span:nth-child(2n) {
+  color: var(--accent-amber);
+}
+
+/* Track is built by JS as two identical halves, so -50% loops seamlessly */
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   10. Sections / reveal (#7)
+   -------------------------------------------------------------------------- */
+.section {
+  padding: var(--space-9) 0;
+}
+
+.section-inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 var(--space-5);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity var(--dur-slow) var(--ease-out),
+              transform var(--dur-slow) var(--ease-out);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   11. About
+   -------------------------------------------------------------------------- */
+.about {
+  background: var(--surface);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+  max-width: 900px;
+}
+
+.about-lead {
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.about-lead:first-child {
+  color: var(--ink);
+}
+
+.about-voice-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+  max-width: 900px;
+}
+
+.voice-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent-amber);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+}
+
+.voice-card--muted {
+  border-left-color: var(--border);
+  opacity: 0.75;
+}
+
+.voice-label {
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: var(--space-2);
+}
+
+.voice-line {
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.voice-card--muted .voice-line {
+  text-decoration: line-through;
+  text-decoration-color: var(--accent-red);
+  text-decoration-thickness: 2px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   12. Pillars grid (+ card hover #13)
+   -------------------------------------------------------------------------- */
+.pillars-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+
+.pillar-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--pillar-accent, var(--accent-amber));
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  transition: transform var(--dur-fast) var(--ease-out),
+              box-shadow var(--dur-fast) var(--ease-out);
+  will-change: transform;
+  text-align: left;
+}
+
+.pillar-card:hover,
+.pillar-card:focus-visible {
+  transform: translateY(-6px) rotate3d(1, -1, 0, 2deg);
+  box-shadow: 0 12px 28px -10px var(--pillar-glow, rgba(245, 166, 35, 0.4));
+}
+
+.pillar-number {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--pillar-accent, var(--accent-amber));
+  text-shadow: 0 1px 0 rgba(10, 10, 10, 0.15);
+}
+
+/* Longer/denser headings use --font-heading, not Finger Paint (legibility exception per spec) */
+.pillar-name {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+
+.pillar-desc {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.pillar-count {
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-top: auto;
+  padding-top: var(--space-3);
+}
+
+/* --------------------------------------------------------------------------
+   13. Catalog — available card
+   -------------------------------------------------------------------------- */
+.available-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 5px solid var(--accent-amber);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  transition: transform var(--dur-fast) var(--ease-out),
+              box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.available-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px -12px rgba(245, 166, 35, 0.45);
+}
+
+/* CSS-drawn cover placeholder, aspect-ratio reserved to avoid layout shift.
+   Book #1's real locked palette is allowed here (shipped identity) but is
+   scoped to this cover mock + the modal preview strip only. */
+.book1-cover {
+  aspect-ratio: 6 / 9;
+  max-width: 260px;
+  width: 100%;
+  margin: 0 auto;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 18px;
+  text-align: center;
+  box-shadow: var(--shadow-card);
+}
+
+.book1-cover .cover-rule {
+  width: 80%;
+  height: 4px;
+  background: #bc6c25;
+}
+
+.book1-cover .cover-title {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  line-height: 1.3;
+  color: #283618;
+  text-transform: uppercase;
+}
+
+.book1-cover .cover-subtitle {
+  font-size: 0.7rem;
+  color: #606c38;
+}
+
+.book1-cover .cover-imprint {
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: #bc6c25;
+  margin-top: 10px;
+}
+
+.available-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  align-items: flex-start;
+}
+
+.badge {
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  background: var(--accent-amber);
+  color: var(--ink);
+}
+
+.badge-soon {
+  background: transparent;
+  border: 1px solid var(--muted);
+  color: var(--muted);
+}
+
+/* Book titles are long → --font-heading for legibility (spec exception) */
+.book-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.book-subtitle {
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.book-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.book-meta strong {
+  color: var(--ink);
+}
+
+.book-blurb {
+  color: var(--ink);
+  max-width: 60ch;
+}
+
+.available-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+/* --------------------------------------------------------------------------
+   14. Filter tabs (#15)
+   -------------------------------------------------------------------------- */
+.filter-tabs {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-7);
+}
+
+.filter-tab {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  transition: color var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out),
+              background-color var(--dur-fast) var(--ease-out);
+}
+
+.filter-tab:hover {
+  color: var(--ink);
+  border-color: var(--muted);
+}
+
+.filter-tab.is-active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--accent-amber);
+}
+
+/* Sliding pill indicator (positioned by JS) */
+.filter-indicator {
+  position: absolute;
+  bottom: -6px;
+  height: 3px;
+  background: var(--accent-amber);
+  border-radius: var(--radius-pill);
+  transition: left var(--dur-med) var(--ease-out),
+              width var(--dur-med) var(--ease-out);
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   15. Catalog grid + coming-soon cards — decompressed per catalog-design pass:
+   wider min column, bigger gutters, roomier internal rhythm (#13, #15, #21)
+   -------------------------------------------------------------------------- */
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: var(--space-6);
+}
+
+.book-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--pillar-accent, var(--accent-amber));
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  text-align: left;
+  box-shadow: var(--shadow-card);
+  transition: transform var(--dur-fast) var(--ease-out),
+              box-shadow var(--dur-fast) var(--ease-out),
+              opacity var(--dur-med) var(--ease-out);
+  will-change: transform;
+}
+
+.book-card:hover,
+.book-card:focus-visible {
+  transform: translateY(-6px) rotate3d(1, -1, 0, 1.5deg);
+  box-shadow: 0 14px 32px -10px var(--pillar-glow, rgba(245, 166, 35, 0.4));
+}
+
+.book-card.is-filtered-out {
+  opacity: 0;
+  transform: scale(0.92);
+  pointer-events: none;
+}
+
+.book-card.is-hidden {
+  display: none;
+}
+
+/* flex-wrap so a long pillar tag drops the badge to a new line instead of
+   overflowing the card edge */
+.book-card-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+/* Accent-on-light fails contrast as text → chips keep accent for the border
+   only and use ink for the label (per spec's contrast fallback rule) */
+.pillar-tag {
+  font-family: var(--font-heading);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  border: 2px solid var(--pillar-accent, var(--accent-amber));
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-pill);
+}
+
+.book-card .book-title {
+  font-size: 1.15rem;
+  line-height: 1.3;
+}
+
+.book-card .book-subtitle {
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.book-card-meta {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.book-card-meta strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.book-card-angle {
+  font-size: 0.88rem;
+  color: var(--muted);
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.book-card-footer {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border);
+}
+
+.planned-date {
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.planned-date .relative-days {
+  color: var(--ink);
+}
+
+.notify-link {
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--accent-amber);
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   16. Social proof + testimonial slider (#17)
+   -------------------------------------------------------------------------- */
+.social-proof {
+  background: var(--surface);
+}
+
+.proof-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6) var(--space-8);
+  margin-bottom: var(--space-7);
+}
+
+.testimonial-slider {
+  position: relative;
+  overflow: hidden;
+  max-width: 760px;
+  touch-action: pan-y;
+}
+
+.testimonial-track {
+  display: flex;
+  transition: transform var(--dur-med) var(--ease-out);
+}
+
+.testimonial {
+  flex: 0 0 100%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  user-select: none;
+}
+
+.testimonial-quote {
+  font-size: 1.05rem;
+  margin-bottom: var(--space-4);
+  color: var(--ink);
+}
+
+.testimonial-attrib {
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.testimonial-dots {
+  display: flex;
+  gap: var(--space-2);
+  justify-content: center;
+  margin-top: var(--space-4);
+}
+
+.testimonial-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--border);
+  transition: background-color var(--dur-fast) var(--ease-out),
+              transform var(--dur-fast) var(--ease-out);
+}
+
+.testimonial-dot.is-active {
+  background: var(--accent-amber);
+  transform: scale(1.25);
+}
+
+/* --------------------------------------------------------------------------
+   17. Newsletter (#19)
+   -------------------------------------------------------------------------- */
+.newsletter {
+  background: var(--ink);
+  color: #ffffff;
+}
+
+.newsletter .kicker {
+  color: var(--accent-amber);
+}
+
+.newsletter .section-title {
+  color: #ffffff;
+}
+
+.newsletter-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.newsletter-sub {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.newsletter-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+  width: 100%;
+  max-width: 520px;
+}
+
+.form-field {
+  flex: 1 1 260px;
+}
+
+.newsletter-form input[type="email"] {
+  width: 100%;
+  padding: var(--space-4);
+  background: #ffffff;
+  border: 2px solid transparent;
+  border-radius: var(--radius-sm);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  transition: border-color var(--dur-fast) var(--ease-out);
+}
+
+.newsletter-form input[type="email"]:focus {
+  outline: none;
+  border-color: var(--accent-amber);
+}
+
+.newsletter-form input[type="email"].is-invalid {
+  border-color: var(--accent-red);
+  animation: input-shake var(--dur-med) var(--ease-out);
+}
+
+@keyframes input-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  50% { transform: translateX(6px); }
+  75% { transform: translateX(-3px); }
+}
+
+#newsletterSubmit.is-success {
+  background: var(--accent-acid);
+  color: var(--ink);
+  pointer-events: none;
+}
+
+.form-message {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.75);
+  min-height: 1.4em;
+}
+
+/* --------------------------------------------------------------------------
+   18. Footer
+   -------------------------------------------------------------------------- */
+.footer {
+  padding: var(--space-8) 0 var(--space-5);
+  background: var(--surface);
+}
+
+.footer-inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-7);
+}
+
+.footer-col {
+  flex: 1 1 180px;
+}
+
+.footer-logo {
+  font-size: 1.3rem;
+  margin-bottom: var(--space-2);
+  color: var(--ink);
+}
+
+.footer-tagline {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.footer-heading {
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: var(--space-3);
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.footer-links a {
+  font-size: 0.9rem;
+  color: var(--ink);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.footer-links a:hover {
+  color: var(--accent-amber);
+}
+
+.footer-bottom {
+  max-width: var(--content-max);
+  margin: var(--space-7) auto 0;
+  padding: var(--space-4) var(--space-5) 0;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-2);
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* --------------------------------------------------------------------------
+   19. Back to top (#20)
+   -------------------------------------------------------------------------- */
+.back-to-top {
+  position: fixed;
+  right: var(--space-5);
+  bottom: var(--space-5);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--accent-amber);
+  font-size: 1.2rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: opacity var(--dur-med) var(--ease-out),
+              transform var(--dur-med) var(--ease-out);
+  z-index: 150;
+  box-shadow: var(--shadow-card);
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* --------------------------------------------------------------------------
+   20. Modal (#14)
+   -------------------------------------------------------------------------- */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-med) var(--ease-out);
+  z-index: 400;
+}
+
+.modal-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  max-width: 640px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  padding: var(--space-7) var(--space-6) var(--space-6);
+  transform: scale(0.92);
+  transition: transform var(--dur-med) var(--ease-out);
+  box-shadow: 0 20px 60px rgba(10, 10, 10, 0.25);
+}
+
+.modal-backdrop.is-open .modal {
+  transform: scale(1);
+}
+
+.modal-close {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--muted);
+  padding: var(--space-2);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.modal-close:hover {
+  color: var(--ink);
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  align-items: flex-start;
+}
+
+/* "Inside the book" preview strip — Book #1's locked interior palette,
+   scoped strictly to this modal via .book1-preview. */
+.book1-preview {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.preview-box {
+  border-radius: var(--radius-sm);
+  padding: var(--space-3) var(--space-4);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: #283618;
+}
+
+.preview-box .preview-label {
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.preview-box--do-this-now {
+  background: #f2e4c8;
+  border-left: 3px solid #bc6c25;
+}
+
+.preview-box--do-this-now .preview-label {
+  color: #bc6c25;
+}
+
+.preview-box--reality-check {
+  background: #faf1de;
+  border-left: 3px solid #dda15e;
+}
+
+.preview-box--reality-check .preview-label {
+  color: #dda15e;
+}
+
+.preview-box--the-math {
+  background: #eef0e2;
+  border-left: 3px solid #606c38;
+}
+
+.preview-box--the-math .preview-label {
+  color: #606c38;
+}
+
+/* --------------------------------------------------------------------------
+   21. Responsive breakpoints (mobile-first: 480 / 768 / 1024 / 1280)
+   -------------------------------------------------------------------------- */
+@media (min-width: 480px) {
+  .about-voice-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 768px) {
+  .pillars-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .available-card {
+    grid-template-columns: 280px 1fr;
+  }
+
+  .book1-preview {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .nav-hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    flex-direction: column;
+    align-items: stretch;
+    padding: var(--space-4) var(--space-5);
+    gap: var(--space-3);
+    transform: translateY(-8px);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform var(--dur-fast) var(--ease-out),
+                opacity var(--dur-fast) var(--ease-out),
+                visibility var(--dur-fast);
+  }
+
+  .nav-links.is-open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav-link {
+    padding: var(--space-3) 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .pillars-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Catalog: cap at 2 roomy columns before 1280 so cards never feel cramped */
+  .catalog-grid {
+    gap: var(--space-7) var(--space-6);
+  }
+}
+
+@media (min-width: 1280px) {
+  .pillars-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   22. Reduced motion (#4) — kill/shorten all motion for users who asked
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .marquee-track {
+    animation: none;
+  }
+
+  .hero-bg {
+    transform: none !important;
+  }
+
+  .hero-glow {
+    display: none;
+  }
+}

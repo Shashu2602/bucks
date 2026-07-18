@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BRAZEN — Money Advice With Its Spine Straight</title>
+<meta name="description" content="BRAZEN is a KDP ebook imprint for personal finance and side-income guides built for readers whose situation doesn't fit generic budgeting advice. No shame. No fluff. No apology.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Finger+Paint&family=Archivo+Black&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+<div class="announcement-banner" id="announcementBanner">
+  <div class="announcement-inner">
+    <p class="announcement-text">BOOK #1 IS LIVE — READ IT NOW <a href="#catalog-available">→</a></p>
+    <button class="announcement-dismiss" id="dismissBanner" aria-label="Dismiss announcement">&times;</button>
+  </div>
+</div>
+
+<header class="nav" id="siteNav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-logo">BRAZEN</a>
+    <nav class="nav-links" id="navLinks" aria-label="Primary">
+      <a href="#about" class="nav-link"><span>About</span></a>
+      <a href="#pillars" class="nav-link"><span>Pillars</span></a>
+      <a href="#catalog-available" class="nav-link"><span>Available</span></a>
+      <a href="#catalog-coming-soon" class="nav-link"><span>Coming Soon</span></a>
+      <a href="#newsletter" class="btn btn-primary btn-small" data-ripple>Get Alerts</a>
+    </nav>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero" id="hero">
+    <div class="hero-bg" id="heroBg" aria-hidden="true"></div>
+    <div class="hero-glow" id="heroGlow" aria-hidden="true"></div>
+    <div class="hero-content reveal">
+      <p class="eyebrow">A KDP Imprint For Real Financial Situations</p>
+      <h1 class="hero-headline">STOP BUDGETING LIKE <span class="hl">YOU'RE SORRY</span> FOR EXISTING.</h1>
+      <p class="hero-sub"><strong class="ul">Learn how to manage and make money</strong> — no shame, no fluff, <span class="hl">no apology.</span></p>
+
+      <div class="hero-stats" id="heroStats">
+        <div class="stat" data-count="500" data-suffix="+">
+          <span class="stat-number" data-target="500">0</span><span class="stat-suffix">+</span>
+          <span class="stat-label">Customers Satisfied</span>
+        </div>
+        <div class="stat" data-count="20">
+          <span class="stat-number" data-target="20">0</span><span class="stat-suffix"></span>
+          <span class="stat-label">Titles In The Catalog</span>
+        </div>
+        <div class="stat" data-count="1">
+          <span class="stat-number" data-target="1">0</span><span class="stat-suffix"></span>
+          <span class="stat-label">Live Right Now</span>
+        </div>
+      </div>
+
+      <div class="hero-cta-row">
+        <a href="#catalog-available" class="btn btn-primary" data-ripple>Read Book #1</a>
+        <a href="#catalog-coming-soon" class="btn btn-ghost" data-ripple>See The Full Catalog</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Track holds one phrase set; JS repeats it into two identical halves wide
+       enough for any viewport so the loop never runs out -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track" id="marqueeTrack">
+      <span>NO SHAME.</span><span>NO FLUFF.</span><span>NO APOLOGY.</span><span>20 TITLES. ONE VOICE.</span>
+    </div>
+  </div>
+
+  <section class="about section" id="about">
+    <div class="section-inner">
+      <p class="kicker reveal">The Brand</p>
+      <h2 class="section-title reveal">Money Advice With Its Spine Straight.</h2>
+      <div class="about-grid">
+        <p class="about-lead reveal">You've been made to feel embarrassed about your money situation before. Irregular income. Divorce. Debt at 40+. Disability income. A household that doesn't look like the one every budgeting app was built for. Every piece of generic advice you've tried assumed a life you don't have — and then made your situation feel like the problem.</p>
+        <p class="about-lead reveal">It isn't. BRAZEN exists for exactly this: one clearly named problem, for one clearly named reader, solved without apology. No pastel "gentle money journey" tone. No hedging. No "you may want to consider." Just the system that actually works for the life you're living right now.</p>
+      </div>
+      <div class="about-voice-row reveal">
+        <div class="voice-card">
+          <p class="voice-label">We say</p>
+          <p class="voice-line">"Stop budgeting like you're sorry for existing."</p>
+        </div>
+        <div class="voice-card voice-card--muted">
+          <p class="voice-label">Not</p>
+          <p class="voice-line">"You may want to consider tracking your spending."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pillars section" id="pillars">
+    <div class="section-inner">
+      <p class="kicker reveal">Five Pillars, One Catalog</p>
+      <h2 class="section-title reveal">Every Title Solves One Named Problem For One Named Reader.</h2>
+      <div class="pillars-grid" id="pillarsGrid"></div>
+    </div>
+  </section>
+
+  <section class="catalog section" id="catalog-available">
+    <div class="section-inner">
+      <p class="kicker reveal">Available Now</p>
+      <h2 class="section-title reveal">Start Here.</h2>
+      <div id="availableBookSlot"></div>
+    </div>
+  </section>
+
+  <section class="catalog section" id="catalog-coming-soon">
+    <div class="section-inner">
+      <p class="kicker reveal">The Full Roadmap</p>
+      <h2 class="section-title reveal">19 More Titles On The Way.</h2>
+      <div class="filter-tabs" id="filterTabs" role="tablist" aria-label="Filter catalog by pillar">
+        <button class="filter-tab is-active" data-filter="all" role="tab" aria-selected="true">All</button>
+      </div>
+      <div class="catalog-grid" id="catalogGrid"></div>
+    </div>
+  </section>
+
+  <section class="social-proof section" id="social-proof">
+    <div class="section-inner">
+      <p class="kicker reveal">Reader-Backed</p>
+      <h2 class="section-title reveal">Real Readers, Real Systems.</h2>
+      <div class="proof-stats reveal">
+        <div class="proof-stat">
+          <span class="stat-number" data-target="500">0</span><span class="stat-suffix">+</span>
+          <span class="stat-label">Customers Satisfied</span>
+        </div>
+        <div class="proof-stat">
+          <span class="stat-number" data-target="20">0</span>
+          <span class="stat-label">Titles In The BRAZEN Catalog</span>
+        </div>
+        <div class="proof-stat">
+          <span class="stat-number" data-target="1">0</span>
+          <span class="stat-label">Live Right Now</span>
+        </div>
+      </div>
+
+      <div class="testimonial-slider reveal" id="testimonialSlider">
+        <div class="testimonial-track" id="testimonialTrack"></div>
+        <div class="testimonial-dots" id="testimonialDots"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="newsletter section" id="newsletter">
+    <div class="section-inner newsletter-inner reveal">
+      <p class="kicker">Don't Miss The Next One</p>
+      <h2 class="section-title">Get Notified The Second A Title Ships.</h2>
+      <p class="newsletter-sub">One email per release. No filler, no funnel, no "just checking in."</p>
+      <form class="newsletter-form" id="newsletterForm" novalidate>
+        <div class="form-field">
+          <label for="newsletterEmail" class="sr-only">Email address</label>
+          <input type="email" id="newsletterEmail" name="email" placeholder="you@email.com" required autocomplete="email">
+        </div>
+        <button type="submit" class="btn btn-primary" id="newsletterSubmit" data-ripple>
+          <span class="btn-label">Notify Me</span>
+        </button>
+      </form>
+      <p class="form-message" id="newsletterMessage" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer" id="footer">
+  <div class="footer-inner">
+    <div class="footer-col footer-brand">
+      <p class="nav-logo footer-logo">BRAZEN</p>
+      <p class="footer-tagline">No shame. No fluff. No apology.</p>
+    </div>
+    <div class="footer-col">
+      <p class="footer-heading">Pillars</p>
+      <ul class="footer-links" id="footerPillarLinks"></ul>
+    </div>
+    <div class="footer-col">
+      <p class="footer-heading">Catalog</p>
+      <ul class="footer-links">
+        <li><a href="#catalog-available">Available Now</a></li>
+        <li><a href="#catalog-coming-soon">Coming Soon</a></li>
+        <li><a href="#newsletter">Release Alerts</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <p class="footer-heading">Elsewhere</p>
+      <ul class="footer-links">
+        <li><a href="#" data-todo="amazon-author-page">Amazon Author Page</a></li>
+        <li><a href="#" data-todo="instagram">Instagram</a></li>
+        <li><a href="#" data-todo="tiktok">TikTok</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 BRAZEN. All rights reserved.</p>
+    <p class="footer-disclosure">Every BRAZEN title carries an honest KDP AI-content disclosure.</p>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">&uarr;</button>
+
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
+    <button class="modal-close" id="modalClose" aria-label="Close dialog">&times;</button>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
