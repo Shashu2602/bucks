@@ -37,8 +37,8 @@ const ACCENT_HEX = {
 
 const BOOKS = [
   {
-    id: 1, slug: "irregular-income-playbook",
-    title: "The Irregular Income Playbook",
+    id: 1, slug: "freelance-income-playbook",
+    title: "The Freelance Income Playbook",
     subtitle: "Budgeting When Your Paycheck Changes Every Month",
     reader: "Gig/freelance workers", pillar: "irregular-income",
     angle: "Variable-income budgeting, not fixed-salary advice",
