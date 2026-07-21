@@ -42,7 +42,7 @@ const BOOKS = [
     subtitle: "Budgeting When Your Paycheck Changes Every Month",
     reader: "Gig/freelance workers", pillar: "irregular-income",
     angle: "Variable-income budgeting, not fixed-salary advice",
-    length: "~18,000 words (~78 pp)", date: "2026-07-22", status: "available",
+    length: "~18,000 words (~78 pp)", date: "2026-07-22", status: "coming-soon",
     blurb: "Your income moves. Every piece of advice built for a salary treats that as a problem to fix. It isn't — it's a fact to plan around. Three moving parts: a floor you budget against, a buffer that catches the bad months, and habits that keep both running without you.",
   },
   {

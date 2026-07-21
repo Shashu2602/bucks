@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Finger+Paint&family=Archivo+Black&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=6">
+<link rel="stylesheet" href="css/style.css?v=7">
 </head>
 <body>
 
@@ -17,7 +17,7 @@
 
 <div class="announcement-banner" id="announcementBanner">
   <div class="announcement-inner">
-    <p class="announcement-text">BOOK #1 IS LIVE — READ IT NOW <a href="#catalog-available">→</a></p>
+    <p class="announcement-text">BOOKS #1 &amp; #2 LAUNCH JULY 22 <a href="#catalog-coming-soon">→</a></p>
     <button class="announcement-dismiss" id="dismissBanner" aria-label="Dismiss announcement">&times;</button>
   </div>
 </div>
@@ -28,7 +28,6 @@
     <nav class="nav-links" id="navLinks" aria-label="Primary">
       <a href="#about" class="nav-link"><span>About</span></a>
       <a href="#pillars" class="nav-link"><span>Pillars</span></a>
-      <a href="#catalog-available" class="nav-link"><span>Available</span></a>
       <a href="#catalog-coming-soon" class="nav-link"><span>Coming Soon</span></a>
       <a href="#newsletter" class="btn btn-primary btn-small" data-ripple>Get Alerts</a>
     </nav>
@@ -61,14 +60,14 @@
           <span class="stat-number" data-target="20">0</span><span class="stat-suffix"></span>
           <span class="stat-label">Titles In The Catalog</span>
         </div>
-        <div class="stat" data-count="1">
-          <span class="stat-number" data-target="1">0</span><span class="stat-suffix"></span>
+        <div class="stat" data-count="0">
+          <span class="stat-number" data-target="0">0</span><span class="stat-suffix"></span>
           <span class="stat-label">Live Right Now</span>
         </div>
       </div>
 
       <div class="hero-cta-row">
-        <a href="#catalog-available" class="btn btn-primary" data-ripple>Read Book #1</a>
+        <a href="#newsletter" class="btn btn-primary" data-ripple>Get Launch Alerts</a>
         <a href="#catalog-coming-soon" class="btn btn-ghost" data-ripple>See The Full Catalog</a>
       </div>
     </div>
@@ -111,14 +110,6 @@
     </div>
   </section>
 
-  <section class="catalog section" id="catalog-available">
-    <div class="section-inner">
-      <p class="kicker reveal">Available Now</p>
-      <h2 class="section-title reveal">Start Here.</h2>
-      <div id="availableBookSlot"></div>
-    </div>
-  </section>
-
   <section class="catalog section section--dark" id="catalog-coming-soon">
     <div class="section-inner">
       <p class="kicker reveal">The Full Roadmap</p>
@@ -145,7 +136,7 @@
           <span class="stat-label">Titles In The BUCKS Catalog</span>
         </div>
         <div class="proof-stat">
-          <span class="stat-number" data-target="1">0</span>
+          <span class="stat-number" data-target="0">0</span>
           <span class="stat-label">Live Right Now</span>
         </div>
       </div>
@@ -190,7 +181,6 @@
     <div class="footer-col">
       <p class="footer-heading">Catalog</p>
       <ul class="footer-links">
-        <li><a href="#catalog-available">Available Now</a></li>
         <li><a href="#catalog-coming-soon">Coming Soon</a></li>
         <li><a href="#newsletter">Release Alerts</a></li>
       </ul>
@@ -219,6 +209,6 @@
   </div>
 </div>
 
-<script src="js/main.js?v=6"></script>
+<script src="js/main.js?v=7"></script>
 </body>
 </html>
