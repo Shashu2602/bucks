@@ -42,7 +42,7 @@ const BOOKS = [
     subtitle: "Budgeting When Your Paycheck Changes Every Month",
     reader: "Gig/freelance workers", pillar: "irregular-income",
     angle: "Variable-income budgeting, not fixed-salary advice",
-    length: "~18,000 words (~78 pp)", date: "2026-07-18", status: "available",
+    length: "~18,000 words (~78 pp)", date: "2026-07-22", status: "available",
     blurb: "Your income moves. Every piece of advice built for a salary treats that as a problem to fix. It isn't — it's a fact to plan around. Three moving parts: a floor you budget against, a buffer that catches the bad months, and habits that keep both running without you.",
   },
   {
@@ -51,7 +51,7 @@ const BOOKS = [
     subtitle: "A Catch-Up System for Late Starters",
     reader: "Adults 40+ with no savings", pillar: "life-stage",
     angle: "Urgency + shame-free tone for late starters",
-    length: "~16,000 words (~70 pp)", date: "2026-07-18", status: "coming-soon",
+    length: "~16,000 words (~70 pp)", date: "2026-07-22", status: "coming-soon",
   },
   {
     id: 3, slug: "money-that-works-with-your-brain",
@@ -59,7 +59,7 @@ const BOOKS = [
     subtitle: "A No-Willpower Budgeting System for ADHD Adults",
     reader: "Neurodivergent adults", pillar: "specific-circumstances",
     angle: "Executive-function-friendly system, not generic budgeting",
-    length: "~15,000 words (~65 pp)", date: "2026-07-21", status: "coming-soon",
+    length: "~15,000 words (~65 pp)", date: "2026-07-25", status: "coming-soon",
   },
   {
     id: 4, slug: "quarterly-taxes-made-simple",
@@ -67,7 +67,7 @@ const BOOKS = [
     subtitle: "A Freelance Creative's Guide to Not Owing the IRS",
     reader: "Freelance creatives", pillar: "irregular-income",
     angle: "Tax-specific, not general freelance finance",
-    length: "~14,000 words (~61 pp)", date: "2026-07-21", status: "coming-soon",
+    length: "~14,000 words (~61 pp)", date: "2026-07-25", status: "coming-soon",
   },
   {
     id: 5, slug: "pcs-money-moves",
@@ -75,7 +75,7 @@ const BOOKS = [
     subtitle: "A Financial Playbook for Military Spouses Who Relocate Every Few Years",
     reader: "Military spouses", pillar: "specific-circumstances",
     angle: "Relocation-specific income/credit continuity",
-    length: "~16,000 words (~70 pp)", date: "2026-07-24", status: "coming-soon",
+    length: "~16,000 words (~70 pp)", date: "2026-07-28", status: "coming-soon",
   },
   {
     id: 6, slug: "two-incomes-one-plan",
@@ -83,7 +83,7 @@ const BOOKS = [
     subtitle: "Merging Finances Without Merging Fights",
     reader: "Newly cohabiting/married couples", pillar: "household-structure",
     angle: "Relationship + money combined framing",
-    length: "~17,000 words (~74 pp)", date: "2026-07-24", status: "coming-soon",
+    length: "~17,000 words (~74 pp)", date: "2026-07-28", status: "coming-soon",
   },
   {
     id: 7, slug: "the-cash-first-method",
@@ -91,7 +91,7 @@ const BOOKS = [
     subtitle: "A Simple Money System for Teens and First Jobs",
     reader: "Teens/young adults", pillar: "life-stage",
     angle: "Analog-first, app-optional approach",
-    length: "~12,000 words (~52 pp)", date: "2026-07-27", status: "coming-soon",
+    length: "~12,000 words (~52 pp)", date: "2026-07-31", status: "coming-soon",
   },
   {
     id: 8, slug: "solo-parent-solid-plan",
@@ -99,7 +99,7 @@ const BOOKS = [
     subtitle: "Building a One-Income Household Budget",
     reader: "Single parents", pillar: "household-structure",
     angle: "Single-income household structure specifically",
-    length: "~16,000 words (~70 pp)", date: "2026-07-27", status: "coming-soon",
+    length: "~16,000 words (~70 pp)", date: "2026-07-31", status: "coming-soon",
   },
   {
     id: 9, slug: "flexible-income-from-home",
@@ -107,7 +107,7 @@ const BOOKS = [
     subtitle: "Side Work That Fits Around Nap Schedules",
     reader: "Stay-at-home parents", pillar: "household-structure",
     angle: "Portability/flexibility as the core constraint",
-    length: "~15,000 words (~65 pp)", date: "2026-07-30", status: "coming-soon",
+    length: "~15,000 words (~65 pp)", date: "2026-08-03", status: "coming-soon",
   },
   {
     id: 10, slug: "managing-money-on-disability-income",
@@ -115,7 +115,7 @@ const BOOKS = [
     subtitle: "",
     reader: "Adults on disability income", pillar: "specific-circumstances",
     angle: "Income-type-specific, rarely covered niche",
-    length: "~15,000 words (~65 pp)", date: "2026-07-30", status: "coming-soon",
+    length: "~15,000 words (~65 pp)", date: "2026-08-03", status: "coming-soon",
   },
   {
     id: 11, slug: "credit-from-zero",
@@ -123,7 +123,7 @@ const BOOKS = [
     subtitle: "A Newcomer's Guide to Building a U.S. Financial History",
     reader: "Immigrants new to the U.S.", pillar: "specific-circumstances",
     angle: "Credit-building from no history, not credit repair",
-    length: "~15,000 words (~65 pp)", date: "2026-08-02", status: "coming-soon",
+    length: "~15,000 words (~65 pp)", date: "2026-08-06", status: "coming-soon",
   },
   {
     id: 12, slug: "the-debt-free-wedding-planner",
@@ -131,7 +131,7 @@ const BOOKS = [
     subtitle: "Budgeting Your Big Day Without the Big Loan",
     reader: "Engaged couples", pillar: "life-transitions",
     angle: "Event-specific budgeting niche",
-    length: "~14,000 words (~61 pp)", date: "2026-08-02", status: "coming-soon",
+    length: "~14,000 words (~61 pp)", date: "2026-08-06", status: "coming-soon",
   },
   {
     id: 13, slug: "the-sandwich-generations-money-guide",
@@ -139,7 +139,7 @@ const BOOKS = [
     subtitle: "Budgeting While Caring for Aging Parents",
     reader: "Adult caregivers", pillar: "household-structure",
     angle: "Dual-dependent financial planning",
-    length: "~18,000 words (~78 pp)", date: "2026-08-05", status: "coming-soon",
+    length: "~18,000 words (~78 pp)", date: "2026-08-09", status: "coming-soon",
   },
   {
     id: 14, slug: "summer-income-for-teachers",
@@ -147,7 +147,7 @@ const BOOKS = [
     subtitle: "Side Work That Doesn't Eat Your Break",
     reader: "Teachers", pillar: "irregular-income",
     angle: "Seasonal, profession-specific income gap",
-    length: "~13,000 words (~57 pp)", date: "2026-08-05", status: "coming-soon",
+    length: "~13,000 words (~57 pp)", date: "2026-08-09", status: "coming-soon",
   },
   {
     id: 15, slug: "starting-over",
@@ -155,7 +155,7 @@ const BOOKS = [
     subtitle: "Rebuilding Your Finances After Divorce",
     reader: "Recently divorced adults", pillar: "life-transitions",
     angle: "Emotional + practical rebuild framing",
-    length: "~17,000 words (~74 pp)", date: "2026-08-08", status: "coming-soon",
+    length: "~17,000 words (~74 pp)", date: "2026-08-12", status: "coming-soon",
   },
   {
     id: 16, slug: "low-stimulation-income",
@@ -163,7 +163,7 @@ const BOOKS = [
     subtitle: "Side Hustles for Neurodivergent Adults Living Paycheck to Paycheck",
     reader: "Neurodivergent adults", pillar: "specific-circumstances",
     angle: "Income generation angle — distinct from Title #3's budgeting angle",
-    length: "~14,000 words (~61 pp)", date: "2026-08-08", status: "coming-soon",
+    length: "~14,000 words (~61 pp)", date: "2026-08-12", status: "coming-soon",
   },
   {
     id: 17, slug: "earning-without-losing-aid",
@@ -171,7 +171,7 @@ const BOOKS = [
     subtitle: "A Student's Guide to Side Income That Won't Hurt Financial Aid",
     reader: "College students", pillar: "life-stage",
     angle: "Financial-aid-safe income, a real pain point",
-    length: "~13,000 words (~57 pp)", date: "2026-08-11", status: "coming-soon",
+    length: "~13,000 words (~57 pp)", date: "2026-08-15", status: "coming-soon",
   },
   {
     id: 18, slug: "50-plus-retirement-catch-up-plan",
@@ -179,7 +179,7 @@ const BOOKS = [
     subtitle: "",
     reader: "Self-employed adults 50+", pillar: "life-stage",
     angle: "No employer 401(k) — self-employed-specific retirement",
-    length: "~17,000 words (~74 pp)", date: "2026-08-11", status: "coming-soon",
+    length: "~17,000 words (~74 pp)", date: "2026-08-15", status: "coming-soon",
   },
   {
     id: 19, slug: "retirement-isnt-the-end-of-income",
@@ -187,7 +187,7 @@ const BOOKS = [
     subtitle: "Part-Time and Passive Options After You Stop Working",
     reader: "Retirees", pillar: "life-stage",
     angle: "Post-retirement supplemental income, not pre-retirement saving",
-    length: "~15,000 words (~65 pp)", date: "2026-08-14", status: "coming-soon",
+    length: "~15,000 words (~65 pp)", date: "2026-08-18", status: "coming-soon",
   },
   {
     id: 20, slug: "the-new-baby-budget-reset",
@@ -195,7 +195,7 @@ const BOOKS = [
     subtitle: "Adjusting Your Finances for One Income (Temporarily or Permanently)",
     reader: "New/postpartum parents", pillar: "life-transitions",
     angle: "Transition-specific, distinct from general parent budgeting",
-    length: "~15,000 words (~65 pp)", date: "2026-08-14", status: "coming-soon",
+    length: "~15,000 words (~65 pp)", date: "2026-08-18", status: "coming-soon",
   },
 ];
 
